@@ -28,6 +28,10 @@ function App() {
     }
   });
 
+  useEffect(() => {
+    console.log("컴포넌트 마운트");
+  }, []);
+  
   return (
   <div className='App'>
     <h1>Simple Counter</h1>
