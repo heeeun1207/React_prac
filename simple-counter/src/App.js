@@ -2,6 +2,7 @@ import './App.css';
 import { useRef, useEffect, useState } from 'react';
 import Controller from './component/Controller';
 import Viewer from './component/Viewer';
+import Even from './component/Even';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -27,25 +28,6 @@ function App() {
     }
   });
 
-  // 마운트 제어하기
-  // 의존성 배열에는 빈 배열을 전달한다. 
-  // useEffect에서 빈 배열을 전달하면 컴포넌트의 마운트 시점에만 콜뱀함수를 실행함.
-  useEffect(() => {
-    console.log("컴포넌트 마운트");
-  }, []);
-
-  useEffect(() => {
-    const intervalID = setInterval(() => {
-      console.log("깜빡");
-    }, 1000);
-
-    // 컴포넌트를 렌더링할 때마다 새 인터벌을 생성하고 기존 인터벌은 삭제
-    return () => {
-      console.log("클린업");
-      clearInterval(intervalID);
-    };
-  });
-
   return (
   <div className='App'>
     <h1>Simple Counter</h1>
@@ -55,6 +37,8 @@ function App() {
     </section>
     <section>
       <Viewer count={count} /> 
+      {/* 값을 2로 나눈 나머지가 0일때, 즉 State값이 짝수일 때 Even 컴포넌트 페이지 렌더링 */}
+      {count % 2 === 0 && <Even />}
     </section>
     <section>
       <Controller handleSetCount={handleSetCount }/>
