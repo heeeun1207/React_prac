@@ -27,6 +27,13 @@ function App() {
     }
   });
 
+  // 마운트 제어하기
+  // 의존성 배열에는 빈 배열을 전달한다. 
+  // useEffect에서 빈 배열을 전달하면 컴포넌트의 마운트 시점에만 콜뱀함수를 실행함.
+  useEffect(() => {
+    console.log("컴포넌트 마운트");
+  }, []);
+
   return (
   <div className='App'>
     <h1>Simple Counter</h1>
