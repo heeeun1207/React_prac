@@ -6,6 +6,9 @@ const TodoEditor = ({onCreate}) => {
   const onChangeContent = (e) => {
     setContent(e.target.value);
   };
+  const onSubmit = () => {
+    onCreate(content);
+  };
 
   return ( 
   <div className="TodoEditor">
@@ -16,7 +19,7 @@ const TodoEditor = ({onCreate}) => {
         onChange={onChangeContent}
         placeholder="새로운 Todo..."
         />
-      <button>추가</button>
+        <button onClick={onSubmit}>추가</button>
       </div>
     </div>
   );
