@@ -3,7 +3,7 @@ import "./TodoEditor.css";
 
 const TodoEditor = ({onCreate}) => {
   const [content, setContent] = useState("");
-  const inputRef = useRef(); // 입력 폼 제어할 inputRef 변수 생성
+  const inputRef = useRef(); 
   const onChangeContent = (e) => {
     setContent(e.target.value);
   };
@@ -13,6 +13,7 @@ const TodoEditor = ({onCreate}) => {
       return;
     }
     onCreate(content);
+    setContent(""); // 인수로 빈 문자열 전달 
   };
 
   return ( 
