@@ -13,7 +13,12 @@ const TodoEditor = ({onCreate}) => {
       return;
     }
     onCreate(content);
-    setContent(""); // 인수로 빈 문자열 전달 
+    setContent(""); 
+  };
+  const onKeyDown = (e) => {
+    if (e.keyCode === 13){ // 13 == enter 키 의미
+      onSubmit();
+    }
   };
 
   return ( 
@@ -24,6 +29,7 @@ const TodoEditor = ({onCreate}) => {
         ref={inputRef}
         value={content}
         onChange={onChangeContent}
+        onKeyDown={onKeyDown}
         placeholder="새로운 Todo..."
         />
         <button onClick={onSubmit}>추가</button>
