@@ -1,4 +1,4 @@
-import { useReducer, useRef} from "react";
+import { useReducer, useRef } from "react";
 import './App.css';
 import Header from './component/Header';
 import TodoEditor from './component/TodoEditor';
@@ -30,6 +30,16 @@ function reducer(state, action){
     case "CREATE": {
       return [action.newItem, ...state];
     }
+    case "UPDATE": {
+      return state.map((it) =>
+        it.id === action.targetId
+          ? {
+            ...it,
+            isDone: !it.isDone,
+          }
+        : it
+      );
+    }
     default:
       return state;
   }
@@ -53,6 +63,10 @@ function App() {
   };
 
   const onUpdate = (targetId) => {
+    dispatch({
+      type: "UPDATE",
+      targetId,
+    });
   };
 
   const onDelete = (targetId) => {
