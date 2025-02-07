@@ -13,3 +13,4 @@
 ---
 ### Create 기능 도식화 
 ![할일 관리 앱 Create 기능 흐름](create_flow.png)
+![할일 관리 앱 Update 기능 흐름](update_flow.png)

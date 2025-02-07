@@ -41,11 +41,26 @@ function App() {
     idRef.current +=1;
   };
 
+  const onUpdate = (targetId) => {
+    setTodo(
+      todo.map((it) => {
+        if (it.id === targetId) {  // 1️⃣ 클릭한 항목인지 확인
+          return {
+            ...it,                 // 2️⃣ 기존 내용 유지
+            isDone: !it.isDone     // 3️⃣ isDone 값을 반전 (true ↔ false)
+          };
+        } else {
+          return it;               // 4️⃣ 다른 항목은 변경 없이 그대로 반환
+        }
+      })
+    );
+  };
+  
   return (
     <div className='App'>
       <Header />
       <TodoEditor onCreate={onCreate} />
-      <TodoList todo={todo} />
+      <TodoList todo={todo} onUpdate={onUpdate}/>
     </div>
   );
 }
