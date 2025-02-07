@@ -40,6 +40,9 @@ function reducer(state, action){
         : it
       );
     }
+    case "DELETE": {
+      return state.filter((it) => it.id !== action.targetId);
+    }
     default:
       return state;
   }
@@ -70,6 +73,10 @@ function App() {
   };
 
   const onDelete = (targetId) => {
+    dispatch({
+      type: "DELETE",
+      targetId,
+    });
   };
   
   return (
