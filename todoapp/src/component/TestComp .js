@@ -1,16 +1,21 @@
-import { useState } from "react";
+import { useReducer } from "react";
+
+function reducer (state, action) {
+  switch (action.type) {
+    case "INCREASE":
+      return state + action.data;
+    case "DECREASE":
+      return state - action.data;
+    // 새로운 상태 변화가 필요하면, 추가해주면 간단함.
+    case "INIT":
+      return 0;
+      default:
+        return state;
+  }
+}
 
 function TestComp() {
-  const [count, setCount] = useState(0);
-
-  const onIncrease = () => {
-    setCount(count + 1);
-  };
-
-  const onDecrease = () => {
-    setCount(count - 1);
-  };
-
+  const [count, dispatch] = useReducer(reducer, 0);
   return (
     <div>
       <h4>테스트 컴포넌트</h4>
@@ -18,8 +23,9 @@ function TestComp() {
     <bold>{count}</bold>
     </div>
       <div>
-        <button onClick={onIncrease}>+</button>
-        <button onClick={onDecrease}>-</button>
+        <button onClick={() => dispatch({ type: "INCREASE", data: 1})}>+</button>
+        <button onClick={() => dispatch({ type: "DECREASE", data: 1})}>-</button>
+        <button onClick={() => dispatch({ type: "INIT"})}>0으로 초기화</button>
       </div>
     </div>
   );
