@@ -29,7 +29,6 @@ function App() {
   const idRef = useRef(3);
   const [todo, setTodo] = useState(mockTodo);
 
-  // 추가 버튼 클리하면 호출할 함수 생성
   const onCreate = (content) => {
     const newItem = {
       id : idRef.current,
@@ -55,12 +54,16 @@ function App() {
       })
     );
   };
+
+  const onDelete = (targetId) => {
+    setTodo(todo.filter((it) => it.id !== targetId));
+  };
   
   return (
     <div className='App'>
       <Header />
       <TodoEditor onCreate={onCreate} />
-      <TodoList todo={todo} onUpdate={onUpdate}/>
+      <TodoList todo={todo} onUpdate={onUpdate} onDelete={onDelete} />
     </div>
   );
 }
