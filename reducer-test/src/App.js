@@ -1,16 +1,24 @@
-// import './App.css';
-import {useState} from 'react';
+import {useReducer} from 'react';
 
 function App() {
-  const [count, setCount] = useState(0);
+  function countReducer(oldCount,action){
+    if(action === "UP") {
+        return oldCount + 1;
+    } else if(action === "DOWN") {
+        return oldCount -1
+    } else if(action === "RESET") {
+      return 0;
+    }
+  }
+  const [count, countdispatch] = useReducer(countReducer, 0);
   function down() {
-    setCount(count -1);
+    countdispatch("DOWN");
   }
   function reset() {
-    setCount(0);
+    countdispatch("RESET");
   }
   function up() {
-    setCount(count +1);
+    countdispatch("UP");
   }
   return (
     <div className="App">
