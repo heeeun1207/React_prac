@@ -16,6 +16,7 @@ const TodoList = ({todo, onUpdate, onDelete}) => {
   }; 
 
   const analyzeTodo = () => {
+    console.log("analyzeTodo 함수 호출 확인")
     const totalCount = todo.length;
     const doneCount = todo.filter((it) => it.isDone).length;
     const notDoneCount = totalCount - doneCount;
