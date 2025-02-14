@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import "./TodoList.css";
 import TodoItem from "./TodoItem.js";
 
@@ -15,7 +15,7 @@ const TodoList = ({todo, onUpdate, onDelete}) => {
     );
   }; 
 
-  const analyzeTodo = () => {
+  const analyzeTodo = useMemo(() => {
     console.log("analyzeTodo 함수 호출 확인")
     const totalCount = todo.length;
     const doneCount = todo.filter((it) => it.isDone).length;
@@ -25,8 +25,10 @@ const TodoList = ({todo, onUpdate, onDelete}) => {
       doneCount,
       notDoneCount,
     };
-  };
-  const { totalCount, doneCount, notDoneCount } = analyzeTodo();
+  }, [todo]);
+  const { totalCount, doneCount, notDoneCount } = analyzeTodo;
+  //! useMemo는 함수가 아닌 값을 반환하므로 analyzeTodo에는 값이 저장된다.
+  //! 따라서 구조분해 할당의 대상을 기존의 analyzeTodo()가 아닌 analyzeTodo로 변경한다. 
 
   return (
     <div className="TodoList">
